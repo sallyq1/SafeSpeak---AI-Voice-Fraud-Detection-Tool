@@ -1,13 +1,14 @@
 // app/page.tsx
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react"
 import Logo from "@/app/assets/icon-logo.svg"
 
 export default function Home() {
   const [file, setFile] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [phrase, setPhrase] = useState<string>("");
   const [result, setResult] = useState<null | {
     verdict: "real" | "fake";
     spectrogramUrl?: string;
@@ -26,6 +27,20 @@ export default function Home() {
       setFile(uploadedFile);
     }
   };
+
+  const fetchPhrase = async () => {
+    try {
+      const res = await fetch("/api/get-phrase");
+      const data = await res.json();
+      if (data.phrase) setPhrase(data.phrase);
+    } catch (err) {
+      console.error("Failed to load phrase:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchPhrase();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -73,6 +88,14 @@ export default function Home() {
     
     <div className="flex flex-col w-[500px] justify-center items-center ml-20">
     <h1 className="text-3xl font-semibold mb-4 text-center text-white">Upload a WAV File</h1>
+
+      {phrase && (
+        <div className="bg-white/10 border border-white/20 text-white p-4 rounded-xl mb-6 text-center">
+          <p className="text-lg font-medium">Please repeat this phrase:</p>
+          <p className="italic text-2xl mt-2 text-cyan-300">"{phrase}"</p>
+        </div>
+      )}
+
 
       <form
         onSubmit={handleSubmit}
