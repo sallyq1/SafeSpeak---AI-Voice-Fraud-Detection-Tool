@@ -1,7 +1,20 @@
 # How to run the project
 
 ## Running the Application (TA, do this part)
+commands for backend:
+```
+1. cd into Back-End folder
+2. nvm install node
+3. pip install -r requirements.txt
+4. flask run
+```
 
+commands for frontend
+```
+1. cd into Front-End folder
+2. npm install
+3. npm run dev
+```
 
 ## Running the Model Notebook (If desired - NOT required!)
 If you would like to train a new model, you will have to run the model training notebook on Google colab. We include pretrained model files to simplify the process of using our application.
