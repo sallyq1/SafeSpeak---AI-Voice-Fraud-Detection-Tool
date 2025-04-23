@@ -10,6 +10,36 @@ This project implements an advanced deep learning system for detecting deepfake 
 - Data augmentation with validation
 - Multi-training component for model optimization
 
+## Usage
+
+### OS Requirements
+Our team is running the notebook on Google Colab. We take the notebook file and upload it onto google colab.
+
+We are using the free tier and we have the training data (and requirements.txt file) uploaded to a Google Drive account with the same folder structure listed below. Note that the data is located in a folder on the root of the google drive account titled "notebook_data".
+```
+notebook_data/
+├── real/
+├───── clip1.wav
+├───── ...
+├── fake/
+├───── clip1.wav
+├───── ...
+├── requirements.txt
+├── michael-real.wav
+├── michael-fake.wav
+
+The notebook will read from the path /content/drive/MyDrive/notebook_data to access this folder
+```
+
+Here is the Google drive folder that our team is currently using: https://drive.google.com/drive/folders/1TpkC1UkAB7qs4hgGqV5GLjY4yNDMXQbL?usp=sharing
+
+The notebook will take a decent amount of time to run completely (5min or so) because it is training the model on all of the provided audio clips.
+ 
+This notebook (if running locally) would work best on a MacOS device or a Linux device. However, changes would need to be made to the notebook so it's not suggested. You would have to change paths and remove references to loading and mounting Google Drive.
+
+Note that all of our audio clips are .wav files because we wanted a lossless audio format. The input to the model is expected to be a .wav file as well.
+
+
 ## Technical Architecture
 
 ### 1. Feature Extraction
