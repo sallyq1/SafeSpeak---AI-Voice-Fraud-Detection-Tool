@@ -1,20 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from typing import Union, Tuple
-from sklearn.feature_selection import mutual_info_classif
-from sklearn.ensemble import RandomForestClassifier
-from scipy import stats
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-import io
-import base64
-import joblib
-import numpy as np
 import librosa
 import os
 import tensorflow as tf
-import matplotlib.pyplot as plt
-import seaborn as sns
-import pandas as pd
 import numpy as np
 
 app = Flask(__name__)
@@ -190,7 +178,9 @@ def predict_audio():
     Endpoint to handle audio file uploads from UI post request and predicting whether the audio is real or fake 
     """
     
-    uploads_dir = "/Users/boo/PyCharmProjects/ML Model API/uploads"
+    uploads_dir = os.path.join(os.path.expanduser("~"), "uploads")
+    os.makedirs(uploads_dir, exist_ok=True)
+    print(f"Uploads directory: {uploads_dir}")
 
     # Load trained model and scaler for feature normalization
     best_base_model = load_best_models()
@@ -205,12 +195,13 @@ def predict_audio():
     if audio_file is None:
         return jsonify({'error': 'No audio file'}), 400
     
-    print("File receive:", audio_file.filename)
+    print("File received:", audio_file.filename)
     
     try:
         # define the file path where the uploaded file will be temporarily saved
         file_path = os.path.join(uploads_dir, audio_file.filename)
         audio_file.save(file_path)
+        print(f"Saved file path: {file_path}")
 
         # Validate the audio file
         validate_audio_file(file_path)
