@@ -1,19 +1,11 @@
 # How to run the project
 
 ## Running the Application (TA, do this part)
-commands for backend:
+commands need to be run at the root directory
 ```
-1. cd into Back-End folder
-2. nvm install node
-3. pip install -r requirements.txt
-4. flask run
-```
-
-commands for frontend
-```
-1. cd into Front-End folder
-2. npm install
-3. npm run dev
+1. chmod +x setup.sh run.sh
+2. ./setup.sh
+3. ./run.sh
 ```
 
 ## Running the Model Notebook (If desired - NOT required!)
