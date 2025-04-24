@@ -16,6 +16,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 import numpy as np
+from groq import Groq
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -238,6 +241,34 @@ def predict_audio():
     except Exception as e:
         # handle any errors that occur during processing
         return jsonify({"error": str(e)}), 400
+
+#function to generate random phrases using Groq LLM for demo purposes 
+@app.route('/get-phrase', methods=['GET'])
+def get_phrase():
+    try:
+        client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+
+        prompt = "Give me a short, creative sentence (5-10 words) that could be used as a voice verification phrase. Avoid numbers or special characters. Be simple and clear."
+
+        chat_completion = client.chat.completions.create(
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are a creative phrase generator for voice authentication. Keep phrases short, clear, and natural."
+                },
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            model="llama-3-70b-8192"
+        )
+
+        phrase = chat_completion.choices[0].message.content.strip()
+        return jsonify({"phrase": phrase}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run()

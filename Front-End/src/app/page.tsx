@@ -35,7 +35,7 @@ export default function Home() {
 
   const fetchPhrase = async () => {
     try {
-      const res = await fetch("/api/get-phrase");
+      const res = await fetch("http://127.0.0.1:5000/get-phrase");
       const data = await res.json();
       if (data.phrase) setPhrase(data.phrase);
     } catch (err) {
@@ -100,70 +100,19 @@ export default function Home() {
           </div>
         </div>
 
-{/*
-
-    <Logo className="scale-[0.7]"/>
-
-    <div className="flex flex-col text-white gap-5">
-      <h1 className=" text-7xl font-semibold">SafeSpeak</h1>
-      <h2 className=" text-3xl font-semibold tracking-[15px]">SAY IT SAFE</h2>
-    </div>
-    </div>
-    
-    <div className="flex flex-col w-[500px] justify-center items-center ml-20">
-    <h1 className="text-3xl font-semibold mb-4 text-center text-white">Upload a WAV File</h1>
-
-      {phrase && (
-        <div className="bg-white/10 border border-white/20 text-white p-4 rounded-xl mb-6 text-center">
-          <p className="text-lg font-medium">Please repeat this phrase:</p>
-          <p className="italic text-2xl mt-2 text-cyan-300">"{phrase}"</p>
-        </div>
-      )}
-
-
-      <form
-        onSubmit={handleSubmit}
-        className="bg-gradient-to-b from-[#0064BB] to-[#0081CC] border-[1.5px] border-white/50 rounded-2xl px-16 py-15 w-full"
-      >
-        
-        <input
-          type="file"
-          accept=".wav"
-          onChange={handleFileChange}
-          className="file:mr-4 file:rounded-xl file:border-0 file:bg-white file:px-4 file:py-1 text-[18px] file:font-semibold file:text-[#0064BB] hover:file:bg-white/90 text-white"
-          />
-
-        {error && <p className="text-white my-5 text-lg">{error}</p>}
-
-        <button
-          type="submit"
-          disabled={loading}
-          className=" w-full bg-gradient-to-r from-[#1AC4EF] to-[#10AAE3] hover:from-[#1AC4EF]/80 hover:to-[#10AAE3]/80 text-white py-2 px-4 rounded-xl text-[18px] font-semibold disabled:opacity-50"
-        >
-          {loading ? "Processing..." : "Submit"}
-        </button>
-      </form>
-      </div>
-
-      {result && (
-        <div className="mt-8 p-6 bg-white rounded-2xl shadow-md w-full max-w-md text-center">
-          <h2 className="text-xl font-bold">
-            Result:{" "}
-            <span
-              className={
-                result.verdict === "real"
-                  ? "text-white"
-                  : "text-red-600"
-              }
-            >
-              {result.verdict.toUpperCase()}
-            </span>
-*/}
         {/* Upload Section */}
         <div className="max-w-xl mx-auto bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-lg border border-white/20">
           <h2 className="text-2xl font-semibold mb-8 text-center text-white">
             Upload Audio File
           </h2>
+
+          {phrase && (
+            <div className="bg-white/10 border border-white/20 text-white p-4 rounded-xl mb-6 text-center">
+              <p className="text-lg font-medium">Please repeat this phrase:</p>
+              <p className="italic text-2xl mt-2 text-cyan-300">"{phrase}"</p>
+            </div>
+          )}
+
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="flex flex-col items-center gap-4">
