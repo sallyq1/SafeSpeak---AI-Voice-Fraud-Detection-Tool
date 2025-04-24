@@ -1,7 +1,7 @@
 # How to run the project
 
 ## Running the Application (TA, do this part)
-commands need to be run at the root directory
+In a command line, run these commands at the root directory
 ```
 1. chmod +x setup.sh run.sh
 2. ./setup.sh
