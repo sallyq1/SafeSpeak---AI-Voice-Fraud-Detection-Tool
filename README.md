@@ -8,6 +8,8 @@ In a command line, run these commands at the root directory
 3. ./run.sh
 ```
 
+This will start the back-end and front-end for the application. Once running ```run.sh``` navigate to ```http://localhost:3000``` in your web browser to access the application
+
 ## Running the Model Notebook (If desired - NOT required!)
 If you would like to train a new model, you will have to run the model training notebook on Google colab. We include pretrained model files to simplify the process of using our application.
 
