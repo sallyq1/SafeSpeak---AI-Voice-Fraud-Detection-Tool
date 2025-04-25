@@ -1,12 +1,16 @@
 # How to run the project
 
 ## Running the Application (TA, do this part)
-In a command line, run these commands at the root directory
+This application should be run on a device running **MacOS**
+
+In a command line, run these commands at the root directory of the project
 ```
 1. chmod +x setup.sh run.sh
 2. ./setup.sh
 3. ./run.sh
 ```
+
+This will start the front-end and back-end for the application. After running ```run.sh``` navigate to ```http://localhost:3000``` in your web browser to access the application
 
 ## Running the Model Notebook (If desired - NOT required!)
 If you would like to train a new model, you will have to run the model training notebook on Google colab. We include pretrained model files to simplify the process of using our application.
