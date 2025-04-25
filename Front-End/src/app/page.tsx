@@ -77,6 +77,14 @@ export default function Home() {
     }
   };
 
+  function Spinner() {
+    return (
+      <div className="flex justify-center mt-4">
+        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white"></div>
+      </div>
+    );
+  }  
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0064BB] to-[#0081CC] px-4 py-8 md:py-16">
       {/* Header Section */}
@@ -139,13 +147,20 @@ export default function Home() {
                 <p className="text-red-200 text-sm font-medium">{error}</p>
               )}
 
-              <button
-                type="submit"
-                disabled={loading || !file}
-                className="w-full bg-white/90 hover:bg-white text-[#0064BB] py-3 px-6 rounded-xl text-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loading ? "Analyzing..." : "Verify Audio"}
-              </button>
+              {loading ? (
+                <div className="flex flex-col items-center gap-2">
+                  <Spinner />
+                  <p className="text-white text-lg font-semibold">Analyzing...</p>
+                </div>
+              ) : (
+                <button
+                  type="submit"
+                  disabled={!file}
+                  className="w-full bg-white/90 hover:bg-white text-[#0064BB] py-3 px-6 rounded-xl text-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Verify Audio
+                </button>
+              )}
             </div>
           </form>
         </div>
