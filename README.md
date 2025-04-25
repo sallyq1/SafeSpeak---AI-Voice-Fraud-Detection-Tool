@@ -12,10 +12,18 @@ In a command line, run these commands at the root directory of the project
 
 This will start the front-end and back-end for the application. After running ```run.sh``` navigate to ```http://localhost:3000``` in your web browser to access the application
 
-## Running the Model Notebook (If desired - NOT required!)
+## Using the application
+1. Navigate to http://localhost:3000
+2. Sign into the application with a Google account or username and password
+3. Observe the file upload screen. It will randomly generate a phrase for you to say to verify yourself.
+4. Upload a **wav** file in the box and wait for the model prediction results
+
+### Running the Model Notebook (If desired - NOT required!)
 If you would like to train a new model, you will have to run the model training notebook on Google colab. We include pretrained model files to simplify the process of using our application.
 
-### OS Requirements
+**If you would like to just see the output of the notebook without running it, please see the file at https://github.com/sallyq1/SafeSpeak---AI-Voice-Fraud-Detection-Tool/blob/master/Model/Model-Notebook.ipynb**
+
+#### OS Requirements
 Our team is running the notebook on Google Colab. We take the notebook file and upload it onto google colab.
 
 We are using the free tier and we have the training data (and requirements.txt file) uploaded to a Google Drive account with the same folder structure listed below. Note that the data is located in a folder on the root of the google drive account titled "notebook_data".
