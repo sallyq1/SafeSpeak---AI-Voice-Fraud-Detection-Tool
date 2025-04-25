@@ -239,7 +239,7 @@ def get_phrase():
     try:
         client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
-        prompt = "Give me a short, creative sentence (5-10 words) that could be used as a voice verification phrase. Avoid numbers or special characters. Be simple and clear."
+        prompt = "Give me a short, creative sentence (5-10 words) that could be used as a voice verification phrase. Avoid numbers or special characters. Be simple and clear. Only reply with the phrase, no other text."
 
         chat_completion = client.chat.completions.create(
             messages=[

@@ -30,6 +30,8 @@ echo "⚛️ Setting up React frontend..."
 cd Front-End
 echo "📦 Installing Node.js dependencies..."
 npm install
+npm install --save-dev @svgr/webpack
+npm install @clerk/nextjs
 
 # Return to root directory
 cd ..
