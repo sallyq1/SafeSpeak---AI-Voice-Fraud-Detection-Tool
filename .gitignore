@@ -1,3 +1,4 @@
 Back-End/.env
 Front-End/svg.d.ts
 /node_modules
+/Front-End/.clerk
