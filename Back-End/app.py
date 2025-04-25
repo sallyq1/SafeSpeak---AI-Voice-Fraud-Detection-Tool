@@ -261,7 +261,7 @@ def get_phrase():
                     "content": prompt
                 }
             ],
-            model="llama-3-70b-8192"
+            model="llama3-70b-8192"
         )
 
         phrase = chat_completion.choices[0].message.content.strip()
