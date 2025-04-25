@@ -19,6 +19,8 @@ pip install seaborn
 pip install pandas
 pip install numpy
 pip install soundfile
+pip install groq
+pip install python-dotenv
 
 # Return to root directory
 cd ..

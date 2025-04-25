@@ -1,13 +1,14 @@
 // app/page.tsx
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "@app/assets/icon-logo.svg";
 
 export default function Home() {
   const [file, setFile] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [phrase, setPhrase] = useState<string>("");
   const [result, setResult] = useState<null | {
     Prediction: "REAL" | "FAKE";
     FeatureDistributionPlotURL: string;
@@ -31,6 +32,20 @@ export default function Home() {
       setFile(uploadedFile);
     }
   };
+
+  const fetchPhrase = async () => {
+    try {
+      const res = await fetch("http://127.0.0.1:5000/get-phrase");
+      const data = await res.json();
+      if (data.phrase) setPhrase(data.phrase);
+    } catch (err) {
+      console.error("Failed to load phrase:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchPhrase();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,6 +77,14 @@ export default function Home() {
     }
   };
 
+  function Spinner() {
+    return (
+      <div className="flex justify-center mt-4">
+        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white"></div>
+      </div>
+    );
+  }  
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0064BB] to-[#0081CC] px-4 py-8 md:py-16">
       {/* Header Section */}
@@ -91,6 +114,14 @@ export default function Home() {
             Upload Audio File
           </h2>
 
+          {phrase && (
+            <div className="bg-white/10 border border-white/20 text-white p-4 rounded-xl mb-6 text-center">
+              <p className="text-lg font-medium">Please repeat this phrase:</p>
+              <p className="italic text-2xl mt-2 text-cyan-300">"{phrase}"</p>
+            </div>
+          )}
+
+
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="flex flex-col items-center gap-4">
               <label
@@ -116,13 +147,20 @@ export default function Home() {
                 <p className="text-red-200 text-sm font-medium">{error}</p>
               )}
 
-              <button
-                type="submit"
-                disabled={loading || !file}
-                className="w-full bg-white/90 hover:bg-white text-[#0064BB] py-3 px-6 rounded-xl text-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loading ? "Analyzing..." : "Verify Audio"}
-              </button>
+              {loading ? (
+                <div className="flex flex-col items-center gap-2">
+                  <Spinner />
+                  <p className="text-white text-lg font-semibold">Analyzing...</p>
+                </div>
+              ) : (
+                <button
+                  type="submit"
+                  disabled={!file}
+                  className="w-full bg-white/90 hover:bg-white text-[#0064BB] py-3 px-6 rounded-xl text-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Verify Audio
+                </button>
+              )}
             </div>
           </form>
         </div>
