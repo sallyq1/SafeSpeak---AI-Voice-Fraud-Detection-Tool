@@ -1,7 +1,7 @@
 # How to run the project
 
 ## Running the Application (TA, do this part)
-This application should be run on a device running **MacOS**
+This application should be run on a device running **MacOS** or **Windows**
 
 In a command line, run these commands at the root directory of the project
 ```
