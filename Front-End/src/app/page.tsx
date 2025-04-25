@@ -1,6 +1,5 @@
 // app/page.tsx
 import { auth, currentUser } from "@clerk/nextjs/server";
-import Logo from "@app/assets/icon-logo.svg";
 import ClientHome from "./ClientHome";
 
 export default async function Home() {
